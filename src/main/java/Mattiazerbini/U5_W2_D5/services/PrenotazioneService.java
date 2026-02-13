@@ -3,7 +3,9 @@ package Mattiazerbini.U5_W2_D5.services;
 import Mattiazerbini.U5_W2_D5.entities.Dipendente;
 import Mattiazerbini.U5_W2_D5.entities.Prenotazione;
 import Mattiazerbini.U5_W2_D5.entities.Viaggio;
+import Mattiazerbini.U5_W2_D5.exceptions.ExceptionPrenotation;
 import Mattiazerbini.U5_W2_D5.exceptions.NotFoundException;
+import Mattiazerbini.U5_W2_D5.exceptions.ValidationException;
 import Mattiazerbini.U5_W2_D5.payloads.PrenotazionePayload;
 import Mattiazerbini.U5_W2_D5.repositories.DipendenteRepository;
 import Mattiazerbini.U5_W2_D5.repositories.PrenotazioneRepository;
@@ -33,14 +35,15 @@ public class PrenotazioneService {
 
     public Prenotazione salvaPrenotazione(PrenotazionePayload payload){
         Dipendente newDipendente = dipendenteRepository.findById(payload.getIdDipendente())
-        .orElseThrow(()->new RuntimeException("Dipendente con id "+payload.getIdDipendente()+ " non trovato"));
+        .orElseThrow(()->new ValidationException("Dipendente con id "+payload.getIdDipendente()+ " non trovato"));
 
         Viaggio newViaggio = viaggioRepository.findById(payload.getIdViaggio())
-                .orElseThrow(() -> new RuntimeException("Viaggio con id "+payload.getIdViaggio()+ " non trovato"));
+                .orElseThrow(() -> new ValidationException("Viaggio con id "+payload.getIdViaggio()+ " non trovato"));
+
         boolean prenotazioneEsistente = prenotazioneRepository.existsByDipendenteIdAndDataRichiesta
                 (payload.getIdDipendente(), payload.getDataRichiesta());
         if(prenotazioneEsistente){
-            throw new RuntimeException("Il dipendente ha gia effettuato una prenotazione per " +payload.getDataRichiesta());
+            throw new ExceptionPrenotation("Il dipendente ha gia effettuato una prenotazione per il" +payload.getDataRichiesta());
         }
         Prenotazione prenotazione = new Prenotazione(payload.getDataRichiesta(), payload.getPreferenze(),
                 newDipendente, newViaggio);
