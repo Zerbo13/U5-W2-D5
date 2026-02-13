@@ -37,7 +37,11 @@ public class PrenotazioneService {
 
         Viaggio newViaggio = viaggioRepository.findById(payload.getIdViaggio())
                 .orElseThrow(() -> new RuntimeException("Viaggio con id "+payload.getIdViaggio()+ " non trovato"));
-
+        boolean prenotazioneEsistente = prenotazioneRepository.existsByDipendenteIdAndDataRichiesta
+                (payload.getIdDipendente(), payload.getDataRichiesta());
+        if(prenotazioneEsistente){
+            throw new RuntimeException("Il dipendente ha gia effettuato una prenotazione per " +payload.getDataRichiesta());
+        }
         Prenotazione prenotazione = new Prenotazione(payload.getDataRichiesta(), payload.getPreferenze(),
                 newDipendente, newViaggio);
         Prenotazione prenotazioneSalvata = this.prenotazioneRepository.save(prenotazione);
