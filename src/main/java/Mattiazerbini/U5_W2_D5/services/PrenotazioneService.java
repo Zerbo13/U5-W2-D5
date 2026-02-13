@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -44,9 +45,4 @@ public class PrenotazioneService {
         return prenotazioneSalvata;
     }
 
-    public Prenotazione findById(UUID idPrenotazione){
-        return this.prenotazioneRepository.findById(idPrenotazione)
-                .orElseThrow(() -> new NotFoundException(idPrenotazione
-                ));
-    }
 }

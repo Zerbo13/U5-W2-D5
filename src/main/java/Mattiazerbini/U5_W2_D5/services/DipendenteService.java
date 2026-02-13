@@ -1,6 +1,7 @@
 package Mattiazerbini.U5_W2_D5.services;
 
 import Mattiazerbini.U5_W2_D5.entities.Dipendente;
+import Mattiazerbini.U5_W2_D5.entities.Prenotazione;
 import Mattiazerbini.U5_W2_D5.entities.Viaggio;
 import Mattiazerbini.U5_W2_D5.exceptions.NotFoundException;
 import Mattiazerbini.U5_W2_D5.payloads.DipendentePayload;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.swing.*;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -35,8 +37,4 @@ public class DipendenteService {
         return dipendenteSalvato;
     }
 
-    public Dipendente findById(UUID idDipendente){
-        return this.dipendenteRepository.findById(idDipendente)
-                .orElseThrow(() -> new NotFoundException(idDipendente));
-    }
 }
