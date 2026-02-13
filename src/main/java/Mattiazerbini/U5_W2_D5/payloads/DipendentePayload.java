@@ -1,5 +1,10 @@
 package Mattiazerbini.U5_W2_D5.payloads;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@NoArgsConstructor
 public class DipendentePayload {
 
     private String username;

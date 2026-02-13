@@ -23,4 +23,11 @@ public class Viaggio {
     private LocalDate data;
     @Enumerated(EnumType.STRING)
     private Stato stato;
+
+
+    public Viaggio(String destinazione, LocalDate data, Stato stato) {
+        this.destinazione = destinazione;
+        this.data = data;
+        this.stato = stato;
+    }
 }

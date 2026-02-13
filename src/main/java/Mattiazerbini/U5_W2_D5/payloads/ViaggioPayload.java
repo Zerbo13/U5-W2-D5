@@ -3,9 +3,12 @@ package Mattiazerbini.U5_W2_D5.payloads;
 import Mattiazerbini.U5_W2_D5.entities.Stato;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-
+@Getter
+@NoArgsConstructor
 public class ViaggioPayload {
 
     private String destinazione;
