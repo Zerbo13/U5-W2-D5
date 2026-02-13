@@ -25,7 +25,7 @@ public class ViaggioController {
         this.viaggioService = viaggioService;
     }
 
-    //CREAZIONE DI UN NUOVO AUTORE (POST)
+    //CREAZIONE DI UN NUOVO VIAGGIO (POST)
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED) // 201
     public Viaggio createViaggio(@RequestBody ViaggioPayload payload) {

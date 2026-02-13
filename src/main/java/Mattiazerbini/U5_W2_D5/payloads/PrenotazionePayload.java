@@ -1,6 +1,8 @@
 package Mattiazerbini.U5_W2_D5.payloads;
 
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +12,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 public class PrenotazionePayload {
+    @NotBlank(message = "La data è obbligatorio")
     private LocalDate dataRichiesta;
     private String preferenze;
     private UUID idDipendente;

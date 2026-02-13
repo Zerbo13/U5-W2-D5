@@ -26,7 +26,7 @@ public class DipendenteController {
         this.dipendenteService = dipendenteService;
     }
 
-    //CREAZIONE DI UN NUOVO AUTORE (POST)
+    //CREAZIONE DI UN NUOVO DIPENDENTE (POST)
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED) // 201
     public Dipendente createDipendente(@RequestBody DipendentePayload payload) {

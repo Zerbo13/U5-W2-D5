@@ -29,6 +29,6 @@ import java.util.UUID;
         public Prenotazione createPrenotazione(@RequestBody PrenotazionePayload payload) {
             return this.prenotazioneService.salvaPrenotazione(payload);
         }
-        
+
     }
 
